@@ -1,0 +1,60 @@
+#include <iostream>
+#include <sstream>
+#include <format>
+using namespace std;
+
+class Binary{
+    public:
+        int number;
+        string bit;
+    public:
+        void setNumber();
+        void convert_to_binary(int num);
+        void getBit() {
+            cout << bit << endl;
+        }
+};
+
+void Binary::setNumber() {
+    int dec;
+    cout << "Enter a decimal number: ";
+    cin >> dec;
+    this->number = dec;
+}
+
+void Binary::convert_to_binary(int num) {
+    string result = "";
+    string tempStr = "";
+    if (num == 0) {
+        this->bit = "0";
+    } else {
+        int temp = num;
+        while (temp > 0) {
+            int mod = temp % 2;
+            tempStr += format("{}", mod);
+            result += tempStr;
+            int tmp = temp / 2;
+            temp = tmp;
+            string().swap(tempStr);
+        }
+
+        if(result.size() < 8) {
+            for (size_t i = 0; i < (8 - result.size()); i++) {
+                tempStr += "0";
+            }
+            tempStr += result;
+            string().swap(result);
+            result = tempStr;
+        }
+        this->bit = result;
+    }
+}
+
+int main() {
+    Binary obj;
+    obj.setNumber();
+    obj.convert_to_binary(obj.number);
+
+    cout << obj.bit << endl;
+    return 0; 
+}
