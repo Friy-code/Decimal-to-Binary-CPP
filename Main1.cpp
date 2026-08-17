@@ -46,6 +46,13 @@ void Binary::convert_to_binary(int num) {
             string().swap(tempStr);
         }
 
+        std::string temps = "";
+        for (int i = result.size() - 1; i >= 0 ; i--) {
+            temps += result[i];
+        }
+        string().swap(result);
+        result = temps;
+
         if(result.size() < 8) {
             for (size_t i = 0; i < (8 - result.size()); i++) {
                 tempStr += "0";
@@ -63,6 +70,6 @@ int main() {
     obj.setNumber();
     obj.convert_to_binary(obj.number);
 
-    cout << obj.bit << endl;
+    cout << "Binary number of " << obj.number << " is " << obj.bit << endl;
     return 0; 
 }
